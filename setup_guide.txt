@@ -1,0 +1,53 @@
+PANDURU MUSIC — FULL PLATFORM STARTER
+Official brand: uses the logo supplied by the owner. Brand colours: orange, black and green.
+Built as a responsive music discovery and artist platform for web/mobile browsers.
+
+WHAT IS INCLUDED
+- Public home page, music discovery, genre filtering and search
+- Audio playback bar, song download links, trending/chart views
+- Artist directory and artist profile pages
+- Account sign-up/login using Supabase Auth
+- Artist dashboard, profile editing, uploads and release status
+- Admin studio to approve/reject songs
+- Supabase database schema, RLS policies, storage buckets and event counters
+- Mobile responsive design
+
+IMPORTANT HONEST LIMITS
+This is a complete functional starter application, but it is not yet a live service.
+You must connect your own Supabase project and deploy the site. No website can securely
+operate real accounts, uploads, moderation or payments without backend credentials and setup.
+Artist earnings/payment transfers, ad sales, subscriptions, copyright detection, takedown
+handling, and a production-grade admin user-management console are not activated in this
+starter. They require payment provider accounts, legal/business decisions, and additional
+server-side functions. The stats are activity counters, not money owed.
+
+SETUP (ANDROID FRIENDLY)
+1. Download and extract this ZIP using your phone's Files app. Find the folder that contains
+   index.html, config.js, styles.css, app.js, logo.jpg and the supabase folder.
+2. Open https://supabase.com, create/open your project.
+3. Open SQL Editor > New query. Open supabase/schema.sql from this ZIP, copy all its contents,
+   paste into SQL Editor, then Run.
+4. In Supabase Project Settings > API, copy Project URL and anon/public key.
+5. Edit config.js and replace PASTE_SUPABASE_PROJECT_URL and PASTE_SUPABASE_ANON_PUBLIC_KEY.
+   Never use the service_role/secret key in website code.
+6. Deploy the extracted folder to Netlify (Add new site > Deploy manually). Upload the folder
+   containing index.html. Do not upload only the ZIP if Netlify asks for a folder.
+7. Open the Netlify URL and register your owner account. Confirm email if Supabase asks.
+8. Promote your account to admin: in Supabase SQL Editor run the final UPDATE statement
+   at the bottom of schema.sql after replacing the email address with your account email.
+9. Sign out/in. Your admin account will see Admin studio. Approve songs there.
+
+CUSTOM DOMAIN
+Only connect a domain you own or control. In Netlify > Domain management > Add a domain,
+enter your domain and follow its DNS instructions. The spelling should be checked before purchase.
+
+CONTENT AND RIGHTS
+Only upload audio, cover art and other content you own or have permission to distribute.
+Create a process for copyright complaints and remove unauthorized content promptly.
+
+SECURITY
+- RLS is enabled on database tables.
+- Never expose Supabase service_role or secret keys in config.js.
+- Restrict admin role changes to the project owner using SQL, not the public website.
+- Configure Supabase Auth redirect URLs to include your deployed Netlify domain.
+- Review storage limits, backups, rate limits and policies before public launch.

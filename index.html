@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en"><head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101010"><title>Panduru Music — Sound without borders</title>
+<meta name="description" content="Discover, stream and download music from artists in Uganda and around the world.">
+<link rel="icon" href="logo.jpg"><link rel="stylesheet" href="styles.css">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head><body>
+<header class="header">
+ <a class="brand" href="#" data-page="home"><img src="logo.jpg"><span>PANDURU <b>MUSIC</b><small>KAMPALA · UGANDA</small></span></a>
+ <button class="mobile-menu" id="mobileMenu">☰</button>
+ <nav id="mainNav"><a data-page="home" class="navlink active">Home</a><a data-page="discover" class="navlink">Discover</a><a data-page="charts" class="navlink">Charts</a><a data-page="artists" class="navlink">Artists</a></nav>
+ <div class="header-actions"><button class="iconbtn" id="searchToggle" title="Search">⌕</button><button class="btn ghost" id="loginBtn">Log in</button><button class="btn orange" id="signupBtn">Join</button><button class="avatar hidden" id="accountBtn">U</button></div>
+</header>
+<div class="searchbar hidden" id="searchBar"><input id="globalSearch" placeholder="Search songs, artists or genres…"><button class="btn orange" id="searchGo">Search</button></div>
+<main>
+<section id="page-home" class="page active">
+ <div class="hero">
+  <div class="hero-text"><div class="eyebrow"><i></i> THE SOUND OF HERE AND EVERYWHERE</div><h1>Feel the beat.<br><em>Find your sound.</em></h1>
+  <p>Discover new music, support the artists you love and share your sound with the world.</p>
+  <div class="hero-buttons"><button class="btn orange big" data-page="discover">Explore music <span>↗</span></button><button class="btn glass big" id="heroArtist">I'm an artist</button></div>
+  <div class="hero-foot"><span>● MUSIC FROM UGANDA</span><span>● LISTEN WORLDWIDE</span></div></div>
+  <div class="hero-logo"><div class="logo-ring"><img src="logo.jpg"></div><div class="floating-tag">YOUR MUSIC. YOUR MOMENT.</div></div>
+ </div>
+ <section class="content-section"><div class="section-title"><div><div class="eyebrow">FRESH ROTATION</div><h2>Trending right now</h2></div><button class="text-btn" data-page="charts">View charts ↗</button></div><div id="homeTrending" class="cards"><div class="loading-card">Connect your music library to see trending songs.</div></div></section>
+ <section class="content-section"><div class="section-title"><div><div class="eyebrow">FIND YOUR NEXT FAVOURITE</div><h2>Explore genres</h2></div></div><div class="genre-grid"><button data-genre="Afrobeats">Afrobeats <span>↗</span></button><button data-genre="Gospel">Gospel <span>↗</span></button><button data-genre="Hip Hop">Hip Hop <span>↗</span></button><button data-genre="Dancehall">Dancehall <span>↗</span></button><button data-genre="R&B">R&amp;B <span>↗</span></button><button data-genre="Other">More sounds <span>↗</span></button></div></section>
+ <section class="artist-banner"><div><div class="eyebrow">FOR THE CREATORS</div><h2>Your music deserves<br>a bigger stage.</h2><p>Build your artist profile, release your music and reach listeners everywhere.</p></div><button class="btn orange big" id="bannerJoin">Start as an artist ↗</button></section>
+</section>
+<section id="page-discover" class="page content-section"><div class="eyebrow">THE LIBRARY</div><h1 class="page-title">Discover music</h1><div class="filter-row"><input id="discoverSearch" placeholder="Search songs or artists…"><select id="genreFilter"><option value="">All genres</option><option>Afrobeats</option><option>Gospel</option><option>Hip Hop</option><option>Dancehall</option><option>R&amp;B</option><option>Other</option></select><select id="sortFilter"><option value="new">Newest first</option><option value="plays">Most played</option><option value="downloads">Most downloaded</option></select></div><div id="discoverSongs" class="cards"><div class="loading-card">Loading music…</div></div></section>
+<section id="page-charts" class="page content-section"><div class="eyebrow">THE PEOPLE HAVE CHOSEN</div><h1 class="page-title">Panduru charts</h1><p class="subtext">Popular tracks based on listening activity on Panduru Music.</p><div id="chartSongs" class="rank-list"></div></section>
+<section id="page-artists" class="page content-section"><div class="eyebrow">MEET THE CREATORS</div><h1 class="page-title">Artists</h1><p class="subtext">Discover the people behind the music.</p><div id="artistGrid" class="artist-grid"></div></section>
+<section id="page-artist-profile" class="page content-section"><button class="text-btn" data-page="artists">← All artists</button><div id="artistProfile"></div></section>
+<section id="page-dashboard" class="page content-section"><div class="dash-top"><div><div class="eyebrow">YOUR CREATOR SPACE</div><h1 class="page-title">Artist dashboard</h1><p class="subtext" id="dashGreeting"></p></div><button class="btn ghost" id="logoutBtn">Log out</button></div>
+ <div class="stats-grid"><div class="stat"><span>Total plays</span><b id="statPlays">0</b><small>Across your releases</small></div><div class="stat"><span>Downloads</span><b id="statDownloads">0</b><small>Listener downloads</small></div><div class="stat"><span>Published songs</span><b id="statPublished">0</b><small>Live on Panduru</small></div><div class="stat"><span>In review</span><b id="statPending">0</b><small>Awaiting admin review</small></div></div>
+ <div class="dashboard-columns"><div class="panel"><div class="section-title"><h2>Your releases</h2><button class="btn orange" id="showUpload">＋ Upload song</button></div><div id="myReleases"></div></div><div class="panel"><h2>Artist profile</h2><form id="profileForm"><label>Stage / artist name<input id="profileName" required></label><label>Short bio<textarea id="profileBio" rows="4" placeholder="Tell listeners about your sound…"></textarea></label><label>Location<input id="profileLocation" placeholder="Kampala, Uganda"></label><button class="btn dark" type="submit">Save profile</button><p class="form-message" id="profileMsg"></p></form></div></div>
+</section>
+<section id="page-admin" class="page content-section"><div class="eyebrow">PLATFORM MANAGEMENT</div><h1 class="page-title">Admin studio</h1><p class="subtext">Review releases and manage platform content.</p><div class="admin-tabs"><button class="btn dark" id="adminPendingTab">Pending songs</button><button class="btn ghost" id="adminAllTab">All songs</button></div><div id="adminSongs"></div></section>
+</main>
+<footer><div class="footer-brand"><img src="logo.jpg"><div><b>PANDURU MUSIC</b><small>Kampala · Uganda</small></div></div><p>Discover. Listen. Support the sound.</p><span>© <span id="year"></span> Panduru Music</span></footer>
+<div class="player hidden" id="player"><img id="playerCover" src="logo.jpg"><div class="track-meta"><b id="playerTitle">Choose a song</b><small id="playerArtist">Panduru Music</small></div><audio id="audioPlayer" controls></audio><button id="playerClose" class="iconbtn">×</button></div>
+
+<div class="modal hidden" id="authModal"><div class="modal-box"><button class="xclose" data-close="authModal">×</button><div class="modal-logo"><img src="logo.jpg"></div><div class="eyebrow">WELCOME TO PANDURU</div><h2 id="authHeading">Log in</h2><div class="auth-switch"><button id="toLogin" class="selected">Log in</button><button id="toSignup">Create account</button></div><form id="authForm"><div id="authNameWrap" class="hidden"><label>Artist / display name<input id="authName" placeholder="Your artist name"></label></div><label>Email address<input id="authEmail" type="email" required autocomplete="email"></label><label>Password<input id="authPassword" type="password" required minlength="6" autocomplete="current-password"></label><button class="btn orange full" id="authSubmit">Log in</button><p class="form-message" id="authMsg">Use your Panduru Music account.</p></form></div></div>
+<div class="modal hidden" id="uploadModal"><div class="modal-box"><button class="xclose" data-close="uploadModal">×</button><div class="eyebrow">NEW RELEASE</div><h2>Upload your music</h2><form id="uploadForm"><label>Song title<input id="upTitle" required maxlength="120"></label><label>Genre<select id="upGenre"><option>Afrobeats</option><option>Gospel</option><option>Hip Hop</option><option>Dancehall</option><option>R&amp;B</option><option>Other</option></select></label><label>Audio file<input id="upAudio" type="file" accept="audio/*" required></label><label>Cover artwork<input id="upCover" type="file" accept="image/png,image/jpeg,image/webp"></label><label>Release description<textarea id="upDescription" rows="3"></textarea></label><button class="btn orange full">Submit for approval</button><p class="form-message" id="uploadMsg">Only music you own or are authorized to distribute may be uploaded. Maximum audio size depends on your storage plan.</p></form></div></div>
+<div class="toast hidden" id="toast"></div>
+<script src="config.js"></script><script src="app.js"></script>
+</body></html>
